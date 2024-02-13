@@ -2,19 +2,19 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { TbSmartHome } from "react-icons/tb";
-
+const currentPath = window.location.pathname;
 const navigation = [
-  { name: 'Home', href: '#', current: true },
-  { name: 'Apartments', href: '#', current: false },
-  { name: 'Villas', href: '#', current: false },
-  { name: 'Co-sharing', href: '#', current: false },
+  { name: 'Home', href: 'home', current: true },
+  { name: 'Apartments', href: 'apartment', current: false },
+  { name: 'Villas', href: 'villa', current: false },
+  { name: 'Co-sharing', href: 'cosharing', current: false },
 ]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export function Navbar() {
+export function Navbar({ currentPath }) {
   return (
     <Disclosure as="nav" className="bg-gradient-to-r from-orange-400 to-amber-400">
       {({ open }) => (
@@ -38,21 +38,23 @@ export function Navbar() {
                  < TbSmartHome className = "mr-2 text-4xl"/>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-800 hover:bg-gray-700 hover:text-white',
-                          'rounded-md px-3 py-2 text-sm font-medium'
-                        )}
-                        aria-current={item.current ? 'page' : undefined}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
-                  </div>
+                <div className="flex space-x-4">
+                {navigation.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className={classNames(
+                      currentPath === item.href
+                        ? 'bg-gray-900 text-white'
+                        : 'text-gray-800 hover:bg-gray-700 hover:text-white',
+                      'rounded-md px-3 py-2 text-sm font-medium'
+                    )}
+                    aria-current={currentPath === item.href ? 'page' : undefined}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -133,10 +135,12 @@ export function Navbar() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block rounded-md px-3 py-2 text-base font-medium'
+                    currentPath === item.href
+                    ? 'bg-gray-900 text-white'
+                    : 'text-gray-800 hover:bg-gray-700 hover:text-white',
+                  'rounded-md px-3 py-2 text-sm font-medium'
                   )}
-                  aria-current={item.current ? 'page' : undefined}
+                  aria-current={currentPath === item.href ? 'page' : undefined}
                 >
                   {item.name}
                 </Disclosure.Button>
@@ -148,3 +152,5 @@ export function Navbar() {
     </Disclosure>
   )
 }
+
+export default Navbar;
