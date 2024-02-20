@@ -5,10 +5,11 @@ import {
     Route,
 } from "react-router-dom";
 import Home from "./components/Home";
-import Apartment from "./components/Apartment";
-import Villas from "./components/Villas";
+import Rentals from "./components/Rentals"
 import Cosharing from "./components/Cosharing";
 import SignUp from "./components/SignUp";
+import Homepostsignup from "./components/Homepostsignup";
+import Login from "./components/Login";
 
  
 function App() {
@@ -16,11 +17,13 @@ function App() {
         <Router>
           
             <Routes>
-                <Route exact path="/home" element={<Home />} />
-                <Route path="/apartment" element={<Apartment />} />
-                <Route path="/villa" element={<Villas />} />
+                <Route exact path="/signup" element={<SignUp />} />
+                <Route path="/rentals" element={<Rentals />} />
                 <Route path="/cosharing" element={<Cosharing />} />
-                <Route path="/" element={<SignUp />}/>
+                <Route path="/" element={<Home />}/>
+                <Route path="/home" element={<Home />}/>
+                <Route path="/login" element={<Login />}/>
+                <Route path="/homepostsignup" element={<Homepostsignup />}/>
                 
 
             </Routes>

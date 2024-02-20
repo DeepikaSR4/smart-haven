@@ -1,6 +1,6 @@
 import React from 'react';
 import {Navbar} from "./Navbar";
-import {Products} from "./Products"
+import {Products} from "./Productscoshare"
 export function Cosharing() {
     const currentPath = 'cosharing';
     return (

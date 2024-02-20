@@ -1,12 +1,12 @@
 import React from 'react';
-import {Navbar} from "./Navbar";
+import {Navbarsignup} from "./Navbarsignup";
 import {Products} from "./Products"
 
 export function Home() {
     const currentPath = 'home';
     return (
     <>
-    <Navbar currentPath={currentPath} />
+    <Navbarsignup currentPath={currentPath} />
     <Products heading = {"New Listings"} />
     </>
     );
